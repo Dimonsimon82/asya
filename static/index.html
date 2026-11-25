@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ася</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div id="auth" class="window auth">
+  <div class="titlebar"><span class="logo">✿</span> Ася — вход</div>
+  <div class="body">
+    <div class="tabs">
+      <button id="tab-login" class="tab active" type="button">Вход</button>
+      <button id="tab-reg" class="tab" type="button">Новый UIN</button>
+    </div>
+    <form id="form-login" autocomplete="on">
+      <label>UIN<input id="l-uin" inputmode="numeric" autocomplete="username" required></label>
+      <label>Пароль<input id="l-pw" type="password" autocomplete="current-password" required></label>
+      <button class="btn" type="submit">Войти</button>
+    </form>
+    <form id="form-reg" hidden autocomplete="on">
+      <label>Ник<input id="r-nick" maxlength="32" required></label>
+      <label>Пароль (от 6 символов)<input id="r-pw" type="password" minlength="6" autocomplete="new-password" required></label>
+      <button class="btn" type="submit">Получить UIN</button>
+    </form>
+    <div id="auth-msg" class="msg" role="alert"></div>
+  </div>
+</div>
+
+<div id="app" class="app" hidden>
+  <aside id="side" class="window side">
+    <div class="titlebar"><span class="logo">✿</span> <span id="me-nick">Ася</span></div>
+    <div class="body">
+      <div class="me-line">UIN: <b id="me-uin"></b></div>
+      <select id="status" aria-label="Статус">
+        <option value="online">В сети</option>
+        <option value="away">Отошёл</option>
+        <option value="dnd">Не беспокоить</option>
+        <option value="invisible">Невидимка</option>
+      </select>
+      <div id="contacts" class="contacts"></div>
+      <form id="form-add" class="add-line">
+        <input id="add-uin" inputmode="numeric" placeholder="UIN контакта" required>
+        <button class="btn" type="submit">＋</button>
+      </form>
+      <div id="side-msg" class="msg" role="status"></div>
+      <div class="side-foot">
+        <button id="btn-sound" class="link" type="button">Звук: вкл</button>
+        <button id="btn-logout" class="link" type="button">Выйти</button>
+      </div>
+    </div>
+  </aside>
+
+  <main id="chat" class="window chat">
+    <div class="titlebar">
+      <button id="btn-back" class="back" type="button" aria-label="К списку">◀</button>
+      <span id="chat-title">Выберите контакт слева</span>
+    </div>
+    <div class="body chat-body">
+      <div id="log" class="log" aria-live="polite"></div>
+      <form id="form-send" class="send" hidden>
+        <textarea id="text" rows="2" maxlength="4000" placeholder="Сообщение… (Enter — отправить, Shift+Enter — новая строка)"></textarea>
+        <div class="send-btns">
+          <label class="btn file-btn" title="Отправить файл до 25 МБ">📎<input id="file" type="file" hidden></label>
+          <button class="btn" type="submit">Отправить</button>
+        </div>
+      </form>
+      <div id="chat-msg" class="msg" role="status"></div>
+    </div>
+  </main>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
